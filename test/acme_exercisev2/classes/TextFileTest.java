@@ -43,8 +43,11 @@ public class TextFileTest {
     @Test
     public void testGetPlain_text() {
         System.out.println("validatePlainText");
-        TextFile instance = TextFile.getInstance("input.txt");
-        String expResult = "ASTRID=MO10:00-12:00,TH12:00-14:00,SU20:00-21:00";
+        TextFile instance = TextFile.getInstance();
+        //instance.setPlain_text("example1.txt");
+        instance.setPlain_text("example2.txt");
+        //String expResult = "ASTRID=MO10:00-12:00,TH12:00-14:00,SU20:00-21:00";
+        String expResult = "RENE=MO10:00-12:00,TU10:00-12:00,TH01:00-03:00,SA14:00-18:00,SU20:00-21:00";
         String result = instance.getPlain_text();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.

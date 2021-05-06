@@ -24,7 +24,7 @@ public class main {
         TextFile txt = TextFile.getInstance();
         //Call the set method to read the txt file
         //The input parameter is the file name 
-        txt.setPlain_text("example2.txt");
+        txt.setPlain_text("example3.txt");
         //We store the plain text in a variable 
         String plain_text = txt.getPlain_text();
         Validators val = Validators.getInstance(plain_text);

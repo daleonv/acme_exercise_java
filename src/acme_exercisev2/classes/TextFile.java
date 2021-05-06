@@ -17,20 +17,30 @@ public final class TextFile {
 
     //Class atribute
     private String plain_text;
-    //Singleton
+    
+    //Singleton atribute
     private static TextFile instance;
 
     //Singleton instance
-    public static TextFile getInstance(String file_name) {
+    public static TextFile getInstance() {
         if (instance == null) {
-            instance = new TextFile(file_name);
+            instance = new TextFile();
         }
         return instance;
     }
 
     //Constructor
-    private TextFile(String file_name) {
-        this.plain_text = read_file(file_name);
+    private TextFile() {
+    }
+
+    //Getters 
+    public String getPlain_text() {
+        return plain_text;
+    }
+
+    //Setters
+    public void setPlain_text(String plain_text) {
+        this.plain_text = read_file(plain_text);
     }
 
     //method to read the content of a txt file 
@@ -44,18 +54,13 @@ public final class TextFile {
             }
             myReader.close();
         } catch (FileNotFoundException e) {
-            System.out.println("An error occurred while reading the .txt file.");
-            data = "Verify that the file name and/or extension are correct.";
+            System.out.printf("%s\n%s\n","An error occurred while reading the .txt file.","Verify that the file name and/or extension are correct.");
         }
-
+        //delete white spaces
         if (data != null) {
             data = data.replace(" ", "");
         }
         return data;
-    }
-
-    public String getPlain_text() {
-        return plain_text;
     }
 
 }

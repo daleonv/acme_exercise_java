@@ -25,8 +25,20 @@ public class Validators {
     private Validators() {
     }
 
+    public boolean validateFile(String plain_text) {
+        boolean aux = true;
+        if (plain_text == null) {
+            aux = false;
+        }
+        return aux;
+    }
+
     public boolean validatePlainText(String plain_text) {
         boolean aux = true;
+        if (!validateFile(plain_text)) {
+            aux = false;
+            return aux;
+        }
         if (validateTyping(plain_text) || validateCharacters(plain_text)) {
             System.out.println("Error: Typing error in .txt file.");
             aux = false;
