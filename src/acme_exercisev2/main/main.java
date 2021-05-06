@@ -21,10 +21,12 @@ public class main {
     public static void main(String[] args) {
 
         //Class intance of TextFile to access it method.
-        //the input parameter is the file text name and the extension
-        TextFile txt = TextFile.getInstance("input.txt");
+        TextFile txt = TextFile.getInstance();
+        //Call the set method to read the txt file
+        //The input parameter is the file name 
+        txt.setPlain_text("example2.txt");
+        //We store the plain text in a variable 
         String plain_text = txt.getPlain_text();
-
         Validators val = Validators.getInstance(plain_text);
         if (val.validatePlainText(plain_text)) {
             //Class intance of TextFile to access it method.
