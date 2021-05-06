@@ -11,7 +11,7 @@ import acme_exercisev2.classes.Validators;
 
 /**
  *
- * @author User
+ * @author daleonv
  */
 public class main {
 
@@ -24,14 +24,20 @@ public class main {
         TextFile txt = TextFile.getInstance();
         //Call the set method to read the txt file
         //The input parameter is the file name 
-        txt.setPlain_text("example3.txt");
+        txt.setPlain_text("example2.txt");
         //We store the plain text in a variable 
+
         String plain_text = txt.getPlain_text();
-        Validators val = Validators.getInstance(plain_text);
-        if (val.validatePlainText(plain_text)) {
+
+        //Class intance of TextFile to access it method.
+        Validators val = Validators.getInstance();
+        if (val.validate(plain_text)) {
             //Class intance of TextFile to access it method.
             //the input parameter is the file text name and the extension
-            Methods solve = Methods.getInstance(plain_text);
+            Methods solve = Methods.getInstance();
+            //Set attributes 
+            solve.setName(plain_text);
+            solve.setArray_details(plain_text);
             solve.setSalary();
             //Printing results 
             System.out.printf("INPUT\n%s\nOUTPUT\nThe amount to pay %s is: %d USD\n", plain_text, solve.getName(), solve.getSalary());

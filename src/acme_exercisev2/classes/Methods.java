@@ -7,7 +7,7 @@ package acme_exercisev2.classes;
 
 /**
  *
- * @author User
+ * @author daleonv
  */
 public class Methods {
 
@@ -19,17 +19,15 @@ public class Methods {
     private static Methods instance;
 
     //Singleton instance
-    public static Methods getInstance(String plain_text) {
+    public static Methods getInstance() {
         if (instance == null) {
-            instance = new Methods(plain_text);
+            instance = new Methods();
         }
         return instance;
     }
 
     //Constructor
-    private Methods(String plain_text) {
-        this.name = setName(plain_text);
-        this.array_details = setArrayDetails(plain_text);
+    private Methods() {
     }
 
     //Getters
@@ -45,17 +43,20 @@ public class Methods {
         return array_details;
     }
 
+    //Setters
     public void setSalary() {
         this.salary = calculateSalary(array_details);
     }
 
-    
-    public void setArray_details(String[][] array_details) {
-        this.array_details = array_details;
+    public void setArray_details(String plain_text) {
+        this.array_details = readArrayDetails(plain_text);
     }
-    
 
-    private String setName(String plain_text) {
+    public void setName(String plain_tex) {
+        this.name = readName(plain_tex);
+    }
+
+    private String readName(String plain_text) {
         //We extract the employee's name from the file
         //removing "=" from plain text
         String[] parts = plain_text.split("=");
@@ -63,7 +64,7 @@ public class Methods {
         return parts[0];
     }
 
-    private String[][] setArrayDetails(String plain_text) {
+    private String[][] readArrayDetails(String plain_text) {
         //We extract the data's from the file 
         //removing "=" from plain text 
         String[] parts = plain_text.split("=");
@@ -85,7 +86,6 @@ public class Methods {
             char second_check_out_hour = dataDays[i].charAt(9);
             days[i][2] = Character.toString(first_check_out_hour) + Character.toString(second_check_out_hour);
         }
-
         //We return the two-dimensional array 
         return days;
     }
@@ -96,11 +96,16 @@ public class Methods {
         //We go through the array to extract perform the necessary operations with said data 
         //We use a counter that iterates from check-in time to check-out time 
         for (int i = 0; i < dataDaysDetails.length; i++) {
+            //conditional for when the entered time equals 0 
+            if (Integer.parseInt(dataDaysDetails[i][2]) == 0) {
+                dataDaysDetails[i][2] = "24";
+            }
+            //counter initialization with entry time 
             int count = Integer.parseInt(dataDaysDetails[i][1]);
             //as long as the entry time is different from the exit time we will be in a repetitive cycle 
             while (count != Integer.parseInt(dataDaysDetails[i][2])) {
                 //rate verification 
-                accum += checkPayment(dataDaysDetails[i][1], dataDaysDetails[i][0]);
+                accum += checkPayment(count, dataDaysDetails[i][0]);
                 //we iterate the counter 
                 count++;
             }
@@ -109,32 +114,31 @@ public class Methods {
         return accum;
     }
 
-    private int checkPayment(String value, String day) {
+    private int checkPayment(int value, String day) {
 
         //method to determine the employee's rate using conditionals 
         //based on the time of entry and exit 
-        int hour = Integer.parseInt(value);
-
+        int hour = value;
         if (!day.equals("SA") && !day.equals("SU")) {
             //normal payment rates 
-            if (hour >= 0 && hour <= 9) {
+            if (hour >= 0 && hour < 9) {
                 return 25;
             }
-            if (hour >= 9 && hour <= 18) {
+            if (hour >= 9 && hour < 18) {
                 return 15;
             }
-            if (hour >= 18 && hour <= 24) {
+            if (hour >= 18 && hour < 24) {
                 return 20;
             }
         } else {
             //weekend rates 
-            if (hour >= 0 && hour <= 9) {
+            if (hour >= 0 && hour < 9) {
                 return 30;
             }
-            if (hour >= 9 && hour <= 18) {
+            if (hour >= 9 && hour < 18) {
                 return 20;
             }
-            if (hour >= 18 && hour <= 24) {
+            if (hour >= 18 && hour < 24) {
                 return 25;
             }
         }

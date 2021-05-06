@@ -14,7 +14,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author User
+ * @author daleonv
  */
 public class MethodsTest {
 
@@ -43,8 +43,9 @@ public class MethodsTest {
     @Test
     public void testGetName() {
         System.out.println("getName");
-        Methods instance = Methods.getInstance("ASTRID=MO10:00-12:00,TH12:00-14:00,SU20:00-21:00");
-        String expResult = "ASTRID";
+        Methods instance = Methods.getInstance();
+        instance.setName("PEDRO=MO10:00-12:00,TH12:00-14:00,SU20:00-21:00");
+        String expResult = "PEDRO";
         String result = instance.getName();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
@@ -59,8 +60,15 @@ public class MethodsTest {
     @Test
     public void testGetSalary() {
         System.out.println("getSalary");
-        Methods instance = Methods.getInstance("ASTRID=MO10:00-12:00,TH12:00-14:00,SU20:00-21:00");
-        int expResult = 85;         
+        Methods instance = Methods.getInstance();
+        //Astrind expResult=85
+        String Astrid = "ASTRID=MO10:00-12:00,TH12:00-14:00,SU20:00-21:00";
+        //René expResult=215
+        //String Rene = "RENE=MO10:00-12:00,TU10:00-12:00,TH01:00-03:00,SA14:00-18:00,SU20:00-21:00";
+        //Diego expResult=705
+        //String Diego = "DIEGO=MO08:00-13:00,TU08:00-13:00,WE08:00-13:00,TH08:00-13:00,FR08:00-13:00,SA12:00-14:00,SU14:00-16:00";
+        instance.setArray_details(Astrid);
+        int expResult = 85;
         instance.setSalary();
         int result = instance.getSalary();
         assertEquals(expResult, result);
