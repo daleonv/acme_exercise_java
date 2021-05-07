@@ -22,15 +22,13 @@ public class Validators {
         return instance;
     }
 
+    //Constructor
     private Validators() {
     }
 
+    //Methods
+    //Method to execute the rest of the validations of the class 
     public boolean validate(String plain_text) {
-        //Class intance of TextFile to access it method.
-        Methods solve = Methods.getInstance();
-        //Set attributes 
-        solve.setName(plain_text);
-        solve.setArray_details(plain_text);
         //Variable that will store the state of the method validate
         boolean aux = true;
         //Conditionals to determine the continuation or break in the execution of the program 
@@ -38,7 +36,12 @@ public class Validators {
             aux = false;
             return aux;
         }
-        if (validateTyping(plain_text) || validateCharacters(plain_text)) {
+        //Class intance of TextFile to access it method.
+        Methods solve = Methods.getInstance();
+        //Set attributes 
+        solve.setName(plain_text);
+        solve.setArray_details(plain_text);
+        if (validateTyping() || validateCharacters()) {
             System.out.println("Error: Typing error in .txt file.");
             aux = false;
         } else {
@@ -46,15 +49,15 @@ public class Validators {
                 System.out.println("Error: Check the text string entered.");
                 aux = false;
             }
-            if (validateAllowedDays(plain_text)) {
+            if (validateAllowedDays()) {
                 System.out.println("Error: Check the writing of the days entered.");
                 aux = false;
             }
-            if (validateHours(plain_text)) {
+            if (validateHours()) {
                 System.out.println("Error: The hour must be an integer on 24 hours format.");
                 aux = false;
             }
-            if (validateCheckOut(plain_text)) {
+            if (validateCheckOut()) {
                 System.out.println("Error: Check-in time must be less than check-out time.");
                 aux = false;
             }
@@ -62,6 +65,7 @@ public class Validators {
         return aux;
     }
 
+    //Method to check if the txt file was read without problems 
     private boolean validateFile(String plain_text) {
         boolean aux = true;
         if (plain_text == null) {
@@ -70,7 +74,8 @@ public class Validators {
         return aux;
     }
 
-    private boolean validateAllowedDays(String plain_text) {
+    //Method to verify that the nomenclature of the days entered was correct 
+    private boolean validateAllowedDays() {
         boolean aux = false;
         Methods solve = Methods.getInstance();
         String[][] array_details = solve.getArray_details();
@@ -84,7 +89,8 @@ public class Validators {
         return aux;
     }
 
-    private boolean validateTyping(String plain_text) {
+    //Method for handling program exceptions 
+    private boolean validateTyping() {
         boolean aux = false;
         try {
             Methods.getInstance();
@@ -94,7 +100,8 @@ public class Validators {
         return aux;
     }
 
-    private boolean validateCharacters(String plain_text) {
+    //Method to handle errors in plain text to array transformation 
+    private boolean validateCharacters() {
         boolean aux = false;
         Methods solve = Methods.getInstance();
         String[][] array_details = solve.getArray_details();
@@ -110,6 +117,7 @@ public class Validators {
         return aux;
     }
 
+    //Method to validate that the input syntax is correct, based on the number of characters 
     private boolean validateNumberCharacters(String plain_text) {
         boolean aux = false;
         Methods solve = Methods.getInstance();
@@ -128,7 +136,8 @@ public class Validators {
         return aux;
     }
 
-    private boolean validateHours(String plain_text) {
+    //Method to validate that the entered hours are in 24 hour format 
+    private boolean validateHours() {
         boolean aux = false;
         try {
             Methods solve = Methods.getInstance();
@@ -145,7 +154,8 @@ public class Validators {
         return aux;
     }
 
-    private boolean validateCheckOut(String plain_text) {
+    //Method to validate that the check-in time is less than the check-out time 
+    private boolean validateCheckOut() {
         boolean aux = false;
         try {
             Methods solve = Methods.getInstance();

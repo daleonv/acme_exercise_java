@@ -11,13 +11,13 @@ import java.util.Scanner;
 
 /**
  *
- * @author User
+ * @author daleonv
  */
 public final class TextFile {
 
     //Class atribute
     private String plain_text;
-    
+
     //Singleton atribute
     private static TextFile instance;
 
@@ -43,7 +43,8 @@ public final class TextFile {
         this.plain_text = read_file(plain_text);
     }
 
-    //method to read the content of a txt file 
+    //Methods
+    //Method to read the content of a txt file 
     private String read_file(String file_name) {
         String data = null;
         try {
@@ -54,7 +55,7 @@ public final class TextFile {
             }
             myReader.close();
         } catch (FileNotFoundException e) {
-            System.out.printf("%s\n%s\n","An error occurred while reading the .txt file.","Verify that the file name and/or extension are correct.");
+            System.out.printf("%s\n%s\n", "An error occurred while reading the .txt file.", "Verify that the file name and/or extension are correct.");
         }
         //delete white spaces
         if (data != null) {

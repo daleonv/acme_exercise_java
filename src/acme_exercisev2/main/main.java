@@ -22,20 +22,22 @@ public class main {
 
         //Class intance of TextFile to access it method.
         TextFile txt = TextFile.getInstance();
+
         //Call the set method to read the txt file
         //The input parameter is the file name 
-        txt.setPlain_text("example2.txt");
-        //We store the plain text in a variable 
+        txt.setPlain_text("example1.txt");
 
+        //We store the plain text in a variable 
         String plain_text = txt.getPlain_text();
 
         //Class intance of TextFile to access it method.
         Validators val = Validators.getInstance();
+
+        //Conditional for the execution of the program according to the validations 
         if (val.validate(plain_text)) {
             //Class intance of TextFile to access it method.
-            //the input parameter is the file text name and the extension
             Methods solve = Methods.getInstance();
-            //Set attributes 
+            //Setting attributes 
             solve.setName(plain_text);
             solve.setArray_details(plain_text);
             solve.setSalary();

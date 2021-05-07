@@ -15,6 +15,7 @@ public class Methods {
     private String name;
     private int salary;
     private String[][] array_details;
+
     //Singleton
     private static Methods instance;
 
@@ -56,21 +57,21 @@ public class Methods {
         this.name = readName(plain_tex);
     }
 
+    //Methods 
+    //We extract the employee's name from the file
+    //removing "=" from plain text
     private String readName(String plain_text) {
-        //We extract the employee's name from the file
-        //removing "=" from plain text
         String[] parts = plain_text.split("=");
-        //Name is returned in the method
+        //Name is returned in this method
         return parts[0];
     }
 
+    //We extract the data's from the file 
+    //removing "," from plain text 
     private String[][] readArrayDetails(String plain_text) {
-        //We extract the data's from the file 
-        //removing "=" from plain text 
         String[] parts = plain_text.split("=");
         String data = parts[1];
-        //We extract the data's from the file 
-        //removing "," from plain text 
+        //We extract the hours from the file 
         String[] dataDays = data.split(",");
         String[][] days = new String[dataDays.length][3];
         //We process the data in plain text to a two-dimensional array 
@@ -86,10 +87,11 @@ public class Methods {
             char second_check_out_hour = dataDays[i].charAt(9);
             days[i][2] = Character.toString(first_check_out_hour) + Character.toString(second_check_out_hour);
         }
-        //We return the two-dimensional array 
+        //We return a two-dimensional array 
         return days;
     }
 
+    //method to calculate employee salary with two-dimensional array input parameter 
     private int calculateSalary(String[][] dataDaysDetails) {
         //Definition of the variable that will store the result 
         int accum = 0;
@@ -114,11 +116,11 @@ public class Methods {
         return accum;
     }
 
+    //method to determine the employee's rate using conditionals 
+    //based on the time of entry and exit 
     private int checkPayment(int value, String day) {
-
-        //method to determine the employee's rate using conditionals 
-        //based on the time of entry and exit 
         int hour = value;
+        //rate control
         if (!day.equals("SA") && !day.equals("SU")) {
             //normal payment rates 
             if (hour >= 0 && hour < 9) {
