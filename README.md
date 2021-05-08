@@ -57,6 +57,17 @@ The architecture applied for this program is an adaptation of the ***controller 
 ## Approach and methodology
 The approach of the application is oriented to the object-oriented programming paradigm (OOP), that is, a model or a programming style that gives us guides on how to work with it. It is based on the concept of classes and objects. This type of programming is used to structure a software program into simple, reusable pieces of code planes (classes) to create individual instances of objects.
 Something to highlight of the application is the use of the sigleton or single instance design pattern, which is a design pattern that allows restricting the creation of objects belonging to a class or the value of a type to a single object.
+Currently, development tools such as NetBeans and Eclipse have plugins that allow the automatic generation of the necessary templates for the automatic creation of unit tests, making it easier to focus on the test and the expected result. For this particular case, Junit 4 was used to perform unit tests.
+
+Unit tests are intended to test the correct behavior of classes in isolation; this means that the class is tested by isolating it from its interaction with other classes.
+
+FIRST principles were considered for writing unit tests
+
+- F: Fast, the tests have to be executed quickly.
+- I: Isolated, the tests are carried out on a class without interaction with others.
+- R: Repeatable, the order of execution of the tests should not influence the final result.
+- S: Self-validating, the tests must be executed automatically.
+- T: Timely, they have to be created at the same time as the software being created. ¡
 ## Instructions
 Inside the solution there is a file called "example1.txt". Inside this file you must place the input string, necessary for the execution of the program.
 
